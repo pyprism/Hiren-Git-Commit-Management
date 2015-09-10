@@ -1,0 +1,21 @@
+{
+  "name": "Hiren-Git-Commit-Reminder",
+  "version": "0.0.0",
+  "homepage": "https://github.com/pyprism/Hiren-Git-Commit-Reminder",
+  "authors": [
+    "Ashutosh Das <git.pyprism@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "static",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "font-awesome": "~4.4.0"
+  }
+}
