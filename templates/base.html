@@ -1,0 +1,67 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Hiren: The Bunny</title>
+    {% load staticfiles %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'bower/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="{% static 'bower/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+    <div class="container topnav">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand topnav" href="#"><i class="fa fa-heart"> Hiren</i>
+            </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                <li>
+                    <a href="/logout"><i class="fa fa-sign-out"></i> Logout</a>
+                </li>
+
+                {% else %}
+                <li>
+                    <a href="/login"><i class="fa fa-sign-in"></i> Login</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<div class="container">
+    {% if  messages %}
+     {% for message in messages %}
+    <div class="alert alert-danger" role="alert"> {{  message }} </div>
+    {% endfor %}
+    {% endif %}
+    {% block content %}{% endblock %}
+</div>
+<!-- Bootstrap Core JavaScript -->
+<script src="{% static 'bower/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'bower/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<noscript><p><img src="//piwik.pyprism.me/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+</body>
+</html>
