@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
     <div class="wrapper">
-    <form class="form-signin" action="/login" method="post">
+    <form class="form-signin" action="/login/" method="post">
         {% csrf_token %}
         <h2 class="form-signin-heading">Please login</h2>
         <input type="text" class="form-control" name="username" placeholder="User name" required="" autofocus="" />
