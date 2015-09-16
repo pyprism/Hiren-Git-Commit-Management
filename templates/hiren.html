@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="button">
+
+    {%  if auth_button %}
+         <a  href="/revoke"><button class="btn btn-danger">Revoke Access Token</button>  {{ btn }} </a>
+    {%   else %}
+        <a  href="{{ btn }}"><button class="btn btn-info">Authorize</button></a>
+    {% endif %}
+</div>
+{% endblock %}
