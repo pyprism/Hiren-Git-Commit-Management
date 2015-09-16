@@ -56,4 +56,6 @@ docs/_build/
 # PyBuilder
 target/
 /config.json
+/static/bower
+/db.sqlite3
 .idea
