@@ -12,15 +12,20 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import json
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# load json file baby :D
+with open('config.json') as f:
+    JSON_DATA = json.load(f)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'at64yb0cvw*(smi)gppf5!fd#zf3ykg4c3d^g)%ez#u5mj@2go'
+SECRET_KEY = JSON_DATA['secret_key']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', False)
@@ -78,8 +83,12 @@ WSGI_APPLICATION = 'hiren.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'hiren_github_management',
+        'USER': 'hiren',
+        'PASSWORD': 'hiren',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -89,7 +98,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Dhaka'
 
 USE_I18N = True
 
@@ -111,4 +120,6 @@ STATICFILES_FINDERS = (
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+LOGIN_URL = '/'
 
