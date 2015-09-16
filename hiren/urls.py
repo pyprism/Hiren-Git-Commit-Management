@@ -18,5 +18,8 @@ from github import views
 
 urlpatterns = [
     url(r'^$', views.index),
-    url(r'^/login/$', views.login),
+    url(r'^login/$', views.login),
+    url(r"^logout$", views.logout),
+    url(r'^hiren/$', views.hiren),
+    url(r'^callback/', views.callback),
 ]
