@@ -67,3 +67,8 @@ def callback(request):
         messages.error(request, "Ops ! Maybe a kitten died ! ")
         return render(request, 'hiren.html')
 
+
+def test(request):
+    import github.tasks
+    from django.http import JsonResponse
+    return JsonResponse(github.tasks.get_data(), safe=False)
