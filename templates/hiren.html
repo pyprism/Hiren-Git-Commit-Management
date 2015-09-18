@@ -3,7 +3,7 @@
 <div class="button">
 
     {%  if auth_button %}
-         <a  href="/revoke"><button class="btn btn-danger">Revoke Access Token</button>  {{ btn }} </a>
+         <a  href="/revoke/{{ id }}"><button class="btn btn-danger">Revoke Access Token</button></a>
     {%   else %}
         <a  href="{{ btn }}"><button class="btn btn-info">Authorize</button></a>
     {% endif %}
