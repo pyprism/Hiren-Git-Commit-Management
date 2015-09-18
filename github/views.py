@@ -42,9 +42,11 @@ def hiren(request):
     redirect_uri = settings.JSON_DATA['redirect_uri']
     scope = 'repo:status'
     login_btn = url + '?' + 'client_id=' + client_id + '&' + 'redirect_uri=' + redirect_uri + '&' + 'scope=' + scope
-    nisha = Hiren.objects.get()
-    print(nisha)
-    return render(request, 'hiren.html', {'btn': login_btn, 'auth_button': nisha})
+    try:
+        nisha = Hiren.objects.get()
+    except Hiren.DoesNotExist:
+        return render(request, 'hiren.html', {'btn': login_btn, 'auth_button': False})
+    return render(request, 'hiren.html', {'btn': login_btn, 'auth_button': nisha.authorized, 'id': nisha.id})
 
 
 @login_required
@@ -62,7 +64,7 @@ def callback(request):
         api_res = response.json()
         obj = Hiren(access_token=api_res['access_token'], authorized=True)
         obj.save()
-        return render(request, 'hiren.html', {'auth_button': True})
+        return render(request, 'hiren.html', {'auth_button': True, 'id': obj.id})
     else:
         messages.error(request, "Ops ! Maybe a kitten died ! ")
         return render(request, 'hiren.html')
@@ -72,3 +74,13 @@ def test(request):
     import github.tasks
     from django.http import JsonResponse
     return JsonResponse(github.tasks.get_data(), safe=False)
+
+
+@login_required
+def revoke(request):
+    """
+    Delete access token
+    """
+    obj = Hiren.objects.get(pk=id)
+    obj.delete()
+    return redirect('/hiren')
