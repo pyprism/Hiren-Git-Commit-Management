@@ -1,1 +1,1 @@
-# Hiren-Git-Commit-Reminder
+# Hiren-Git-Commit-Reminder [![Requirements Status](https://requires.io/github/pyprism/Hiren-Git-Commit-Management/requirements.svg?branch=master)](https://requires.io/github/pyprism/Hiren-Git-Commit-Management/requirements/?branch=master) [![Code Climate](https://codeclimate.com/github/pyprism/Hiren-Git-Commit-Management/badges/gpa.svg)](https://codeclimate.com/github/pyprism/Hiren-Git-Commit-Management)
