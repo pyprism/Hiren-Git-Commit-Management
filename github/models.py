@@ -9,5 +9,5 @@ class Hiren(models.Model):
 
 
 class Counter(models.Model):
-    number = models.BigIntegerField()
-    date = models.DateTimeField()
+    number = models.IntegerField
+    date = models.DateField(auto_now_add=True)
