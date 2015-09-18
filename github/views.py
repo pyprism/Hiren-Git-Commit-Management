@@ -70,14 +70,8 @@ def callback(request):
         return render(request, 'hiren.html')
 
 
-def test(request):
-    import github.tasks
-    from django.http import JsonResponse
-    return JsonResponse(github.tasks.get_data(), safe=False)
-
-
 @login_required
-def revoke(request):
+def revoke(request, id):
     """
     Delete access token
     """
