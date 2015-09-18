@@ -2,5 +2,9 @@
   "client_id" : "",
   "client_secret": "",
   "secret_key": "",
-  "redirect_uri": ""
+  "redirect_uri": "",
+  "account_sid": "",
+  "auth_token": "",
+  "from": "",
+  "to": ""
 }
