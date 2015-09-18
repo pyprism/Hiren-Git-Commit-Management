@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import json
-from datetime import timedelta
+from celery.schedules import crontab
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -133,8 +133,7 @@ CELERY_RESULT_SERIALIZER = 'json'
 
 CELERYBEAT_SCHEDULE = {
     'add-every-30-seconds': {
-        'task': 'github.tasks.nisha',
-        'schedule': timedelta(seconds=30),
-        #'args': (16, 16)
+        'task': 'github.tasks.get_data',
+        'schedule': crontab(minute=0, hour='22'),   # execute every day at 10 pm
     },
 }
