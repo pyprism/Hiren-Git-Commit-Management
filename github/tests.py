@@ -26,7 +26,7 @@ class HomePageTest(TestCase):
         self.assertTrue(response.content.endswith(b'</html>'))
 
 
-class LoginFunctionalTest(LiveServerTestCase):
+class LoginFunctionalTestCase(LiveServerTestCase):
 
     def setUp(self):
         User.objects.create_superuser(
@@ -44,9 +44,11 @@ class LoginFunctionalTest(LiveServerTestCase):
             self.browser = webdriver.Firefox()
             self.browser.maximize_window()
             self.browser.implicitly_wait(5)
+        super(LoginFunctionalTestCase, self).setUp()
 
     def tearDown(self):
         self.browser.quit()
+        super(LoginFunctionalTestCase, self).tearDown()
 
     def test_login_user(self):
         self.browser.get('%s%s' % (self.live_server_url,"/login/"))
