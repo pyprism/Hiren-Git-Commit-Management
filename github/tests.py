@@ -34,7 +34,10 @@ class LoginFunctionalTest(LiveServerTestCase):
             username = os.environ["SAUCE_USERNAME"]
             access_key = os.environ["SAUCE_ACCESS_KEY"]
             hub_url = "%s:%s@localhost:4445" % (username, access_key)
-            browser = webdriver.Remote(
+            capabilities = DesiredCapabilities.FIREFOX.copy()
+            capabilities[‘platform’] = “WINDOWS”
+            capabilities[‘version’] = “10”
+            browser = webdriver.Remote(desired_capabilities=capabilities,
                 command_executor="http://%s/wd/hub" % hub_url)
         else:
             self.browser = webdriver.Firefox()
