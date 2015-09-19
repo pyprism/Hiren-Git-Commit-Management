@@ -4,6 +4,7 @@ from django.http import HttpRequest
 from django.test import LiveServerTestCase
 from django.contrib.auth.models import User
 from selenium import webdriver
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.common.keys import Keys
 from github.views import *
 import os
@@ -34,7 +35,7 @@ class LoginFunctionalTest(LiveServerTestCase):
             username = os.environ["SAUCE_USERNAME"]
             access_key = os.environ["SAUCE_ACCESS_KEY"]
             hub_url = "%s:%s@localhost:4445" % (username, access_key)
-            capabilities = []
+            capabilities = DesiredCapabilities.FIREFOX.copy()
             capabilities['platform'] = "WINDOWS"
             capabilities['version'] = "10"
             browser = webdriver.Remote(desired_capabilities=capabilities,
