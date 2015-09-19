@@ -34,7 +34,7 @@ class LoginFunctionalTest(LiveServerTestCase):
         if 'TRAVIS' in os.environ:
             username = os.environ["SAUCE_USERNAME"]
             access_key = os.environ["SAUCE_ACCESS_KEY"]
-            hub_url = "%s:%s@ondemand.saucelabs.com:80/wd/hub" % (username, access_key)
+            hub_url = "%s:%s@ondemand.saucelabs.com:80" % (username, access_key)
             capabilities = DesiredCapabilities.FIREFOX.copy()
             capabilities['platform'] = "WINDOWS"
             capabilities['version'] = "10"
