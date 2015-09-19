@@ -81,16 +81,28 @@ WSGI_APPLICATION = 'hiren.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'hiren_github_management',
-        'USER': 'hiren',
-        'PASSWORD': 'hiren',
-        'HOST': 'localhost',
-        'PORT': '',
+if 'TRAVIS' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE':   'django.db.backends.postgresql_psycopg2',
+            'NAME':     'travisci',
+            'USER':     'postgres',
+            'PASSWORD': '',
+            'HOST':     'localhost',
+            'PORT':     '',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'hiren_github_management',
+            'USER': 'hiren',
+            'PASSWORD': 'hiren',
+            'HOST': 'localhost',
+            'PORT': '',
+        }
+    }
 
 
 # Internationalization
