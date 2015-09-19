@@ -18,8 +18,12 @@ from celery.schedules import crontab
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # load json file baby :D
-with open('config.json') as f:
-    JSON_DATA = json.load(f)
+try:
+    with open('config.json') as f:
+        JSON_DATA = json.load(f)
+except FileNotFoundError:
+    with open('config.sample.json') as f:
+        JSON_DATA = json.load(f)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
