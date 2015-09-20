@@ -45,14 +45,18 @@ class LoginFunctionalTestCase(LiveServerTestCase):
             self.browser = webdriver.Firefox()
             self.browser.maximize_window()
             self.browser.implicitly_wait(5)
-        super(LoginFunctionalTestCase, self).setUp()
 
     def tearDown(self):
         self.browser.quit()
-        super(LoginFunctionalTestCase, self).tearDown()
 
     def test_login_user(self):
         self.browser.get('%s%s' % (self.live_server_url, "/login/"))
+        username = self.browser.find_element_by_name('username')
+        username.send_keys('admin')
+        password = self.browser.find_element_by_name('password')
+        password.send_keys('admin')
+        self.browser.find_element_by_id('login').submit()
+        self.assertEqual(self.browser.current_url, '%s%s' % (self.live_server_url, '/hiren/'))
 
 
 class HirenModelTest(TestCase):
