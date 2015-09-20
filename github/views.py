@@ -3,7 +3,7 @@ from django.contrib import auth
 from django.contrib import messages
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from github.models import Hiren, Counter
+from github.models import Hiren
 import requests
 # Create your views here.
 
