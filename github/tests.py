@@ -7,6 +7,7 @@ from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.common.keys import Keys
 from github.views import *
+from github.models import Hiren
 import os
 
 
@@ -39,7 +40,7 @@ class LoginFunctionalTestCase(LiveServerTestCase):
             capabilities['platform'] = "WINDOWS"
             capabilities['version'] = "10"
             self.browser = webdriver.Remote(desired_capabilities=capabilities,
-                command_executor="http://%s/wd/hub" % hub_url)
+                                            command_executor="http://%s/wd/hub" % hub_url)
         else:
             self.browser = webdriver.Firefox()
             self.browser.maximize_window()
@@ -51,4 +52,20 @@ class LoginFunctionalTestCase(LiveServerTestCase):
         super(LoginFunctionalTestCase, self).tearDown()
 
     def test_login_user(self):
-        self.browser.get('%s%s' % (self.live_server_url,"/login/"))
+        self.browser.get('%s%s' % (self.live_server_url, "/login/"))
+
+
+class HirenModelTest(TestCase):
+
+    def test_saving_and_retrieving_item(self):
+        item = Hiren()
+        item.access_token = "bla bla"
+        item.authorized = True
+        item.save()
+
+        saved_item = Hiren.objects.all()
+        self.assertEqual(saved_item.count(), 1)
+
+        saved_item_content = saved_item[0]
+        self.assertEqual(saved_item_content.access_token, "bla bla")
+        self.assertEqual(saved_item_content.authorized, True)
