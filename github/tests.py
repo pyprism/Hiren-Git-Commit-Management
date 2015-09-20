@@ -27,6 +27,21 @@ class HomePageTest(TestCase):
         self.assertTrue(response.content.endswith(b'</html>'))
 
 
+class HirenPageTest(TestCase):
+
+    def setUp(self):
+        User.objects.create_superuser(
+            username='admin', password='admin', email='admin@admin.lol')
+
+    def tearDown(self):
+        pass
+
+    def test_url_resolved_to_hiren_page_view(self):
+        found = resolve('/hiren/')
+        self.assertEqual(found.func, hiren)
+
+
+
 class LoginFunctionalTestCase(LiveServerTestCase):
 
     def setUp(self):
