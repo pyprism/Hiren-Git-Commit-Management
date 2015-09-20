@@ -3,6 +3,8 @@ python:
   - "3.4"
   - "3.5"
 
+sudo: false
+
 addons:
   postgresql: "9.3"
 
