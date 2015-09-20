@@ -6,11 +6,15 @@ python:
 addons:
   postgresql: "9.3"
 
-install: "pip install -r requirements.txt --quiet"
+install:
+  - pip install -r requirements.txt --quiet
+  - pip install coveralls
 
 before_script:
   - psql -c "CREATE DATABASE travisci;" -U postgres
 
 script:
-  - python manage.py migrate --noinput
   - python manage.py test
+  - coverage run --source=github manage.py test github
+
+after_success: coveralls
