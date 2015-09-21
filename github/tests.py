@@ -59,7 +59,7 @@ class LoginFunctionalTestCase(LiveServerTestCase):
             self.browser = webdriver.Remote(desired_capabilities=capabilities,
                                             command_executor="http://%s/wd/hub" % hub_url)
             self.browser.maximize_window()
-            self.browser.implicitly_wait(5)
+            self.browser.implicitly_wait(20)
         else:
             self.browser = webdriver.Firefox()
             self.browser.maximize_window()
