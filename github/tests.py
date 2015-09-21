@@ -70,6 +70,8 @@ class LoginFunctionalTestCase(LiveServerTestCase):
 
     def test_login_user(self):
         self.browser.get('%s%s' % (self.live_server_url, "/login/"))
+        import time
+        time.sleep(20)
         username = self.browser.find_element_by_id("username")
         username.send_keys('admin')
         password = self.browser.find_element_by_id("password")
