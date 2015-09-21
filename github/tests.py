@@ -58,6 +58,7 @@ class LoginFunctionalTestCase(LiveServerTestCase):
             capabilities['screenResolution'] = "1024x768"
             self.browser = webdriver.Remote(desired_capabilities=capabilities,
                                             command_executor="http://%s/wd/hub" % hub_url)
+            self.browser.maximize_window()
             self.browser.implicitly_wait(5)
         else:
             self.browser = webdriver.Firefox()
