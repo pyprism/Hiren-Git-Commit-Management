@@ -42,42 +42,42 @@ class HirenPageTest(TestCase):
 
 
 
-class LoginFunctionalTestCase(LiveServerTestCase):
-
-    def setUp(self):
-        User.objects.create_superuser(
-            username='admin', password='admin', email='admin@admin.lol')
-        if 'TRAVIS' in os.environ:
-            username = os.environ["SAUCE_USERNAME"]
-            access_key = os.environ["SAUCE_ACCESS_KEY"]
-            hub_url = "%s:%s@ondemand.saucelabs.com:80" % (username, access_key)
-            capabilities = DesiredCapabilities.FIREFOX.copy()
-            # capabilities = {'browserName': "chrome"}
-            capabilities['platform'] = "Linux"
-            capabilities['version'] = "beta"
-            capabilities['screenResolution'] = "1024x768"
-            self.browser = webdriver.Remote(desired_capabilities=capabilities,
-                                            command_executor="http://%s/wd/hub" % hub_url)
-            self.browser.maximize_window()
-            self.browser.implicitly_wait(20)
-        else:
-            self.browser = webdriver.Firefox()
-            self.browser.maximize_window()
-            self.browser.implicitly_wait(5)
-
-    def tearDown(self):
-        self.browser.quit()
-
-    def test_login_user(self):
-        self.browser.get('%s%s' % (self.live_server_url, "/login/"))
-        import time
-        time.sleep(20)
-        username = self.browser.find_element_by_id("username")
-        username.send_keys('admin')
-        password = self.browser.find_element_by_id("password")
-        password.send_keys('admin')
-        self.browser.find_element_by_id("login").submit()
-        self.assertEqual(self.browser.current_url, '%s%s' % (self.live_server_url, '/hiren/'))
+# class LoginFunctionalTestCase(LiveServerTestCase):
+#
+#     def setUp(self):
+#         User.objects.create_superuser(
+#             username='admin', password='admin', email='admin@admin.lol')
+#         if 'TRAVIS' in os.environ:
+#             username = os.environ["SAUCE_USERNAME"]
+#             access_key = os.environ["SAUCE_ACCESS_KEY"]
+#             hub_url = "%s:%s@ondemand.saucelabs.com:80" % (username, access_key)
+#             capabilities = DesiredCapabilities.FIREFOX.copy()
+#             # capabilities = {'browserName': "chrome"}
+#             capabilities['platform'] = "Linux"
+#             capabilities['version'] = "beta"
+#             capabilities['screenResolution'] = "1024x768"
+#             self.browser = webdriver.Remote(desired_capabilities=capabilities,
+#                                             command_executor="http://%s/wd/hub" % hub_url)
+#             self.browser.maximize_window()
+#             self.browser.implicitly_wait(20)
+#         else:
+#             self.browser = webdriver.Firefox()
+#             self.browser.maximize_window()
+#             self.browser.implicitly_wait(5)
+#
+#     def tearDown(self):
+#         self.browser.quit()
+#
+#     def test_login_user(self):
+#         self.browser.get('%s%s' % (self.live_server_url, "/login/"))
+#         import time
+#         time.sleep(20)
+#         username = self.browser.find_element_by_id("username")
+#         username.send_keys('admin')
+#         password = self.browser.find_element_by_id("password")
+#         password.send_keys('admin')
+#         self.browser.find_element_by_id("login").submit()
+#         self.assertEqual(self.browser.current_url, '%s%s' % (self.live_server_url, '/hiren/'))
 
 
 class HirenModelTest(TestCase):
