@@ -51,9 +51,11 @@ class LoginFunctionalTestCase(LiveServerTestCase):
             username = os.environ["SAUCE_USERNAME"]
             access_key = os.environ["SAUCE_ACCESS_KEY"]
             hub_url = "%s:%s@ondemand.saucelabs.com:80" % (username, access_key)
-            capabilities = DesiredCapabilities.FIREFOX.copy()
-            capabilities['platform'] = "WINDOWS"
-            capabilities['version'] = "10"
+            # capabilities = DesiredCapabilities.FIREFOX.copy()
+            capabilities = {'browserName': "chrome"}
+            capabilities['platform'] = "Linux"
+            capabilities['version'] = "beta"
+            capabilities['screenResolution'] = "1024x768"
             self.browser = webdriver.Remote(desired_capabilities=capabilities,
                                             command_executor="http://%s/wd/hub" % hub_url)
             self.browser.implicitly_wait(5)
