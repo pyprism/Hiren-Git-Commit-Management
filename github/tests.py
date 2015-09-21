@@ -51,8 +51,8 @@ class LoginFunctionalTestCase(LiveServerTestCase):
             username = os.environ["SAUCE_USERNAME"]
             access_key = os.environ["SAUCE_ACCESS_KEY"]
             hub_url = "%s:%s@ondemand.saucelabs.com:80" % (username, access_key)
-            # capabilities = DesiredCapabilities.FIREFOX.copy()
-            capabilities = {'browserName': "chrome"}
+            capabilities = DesiredCapabilities.FIREFOX.copy()
+            # capabilities = {'browserName': "chrome"}
             capabilities['platform'] = "Linux"
             capabilities['version'] = "beta"
             capabilities['screenResolution'] = "1024x768"
