@@ -52,3 +52,9 @@ body {
 .error {
     padding-top: 4em;
 }
+
+.index {
+    text-align: center;
+    padding-top: 10em;
+    max-font-size: 90em;
+}
