@@ -22,7 +22,7 @@ def login(request):
             return redirect('/hiren')
         else:
             messages.error(request, 'Username/Password is not valid!')
-            return redirect(request.path)
+            return redirect('/')
     else:
         return render(request, 'login.html')
 
