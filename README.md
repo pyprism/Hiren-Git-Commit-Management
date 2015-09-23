@@ -1,2 +1,4 @@
 # Hiren-Git-Commit-Reminder
  [![Requirements Status](https://requires.io/github/pyprism/Hiren-Git-Commit-Management/requirements.svg?branch=master)](https://requires.io/github/pyprism/Hiren-Git-Commit-Management/requirements/?branch=master) [![Code Climate](https://codeclimate.com/github/pyprism/Hiren-Git-Commit-Management/badges/gpa.svg)](https://codeclimate.com/github/pyprism/Hiren-Git-Commit-Management) [![Build Status](https://travis-ci.org/pyprism/Hiren-Git-Commit-Reminder.svg)](https://travis-ci.org/pyprism/Hiren-Git-Commit-Reminder) [![Coverage Status](https://coveralls.io/repos/pyprism/Hiren-Git-Commit-Reminder/badge.svg?branch=master&service=github)](https://coveralls.io/github/pyprism/Hiren-Git-Commit-Reminder?branch=master)
+
+This app checks commits of Github if not commited it texts using Twilio
