@@ -62,10 +62,18 @@ class TestLoginView(TestCase):
         User.objects.create_superuser(
             username='admin', password='admin', email='admin@admin.lol')
 
-    def test_valid_login_works(self):
+    def test_denies_anonymous(self):
         # self.client.login(username='admin', password='admin')
         response = self.client.post('/login/', data={'username': 'admi', 'password': 'admin'})
         self.assertRedirects(response, '/')
+
+    def test_correct_view_loads(self):
+        response = self.client.get('/login/')
+        self.assertTemplateUsed(response, 'login.html')
+
+    def test_correct_login_works(self):
+        response = self.client.post('/login/', data={'username': 'admin', 'password': 'admin'}, follow=True)
+        self.assertRedirects(response, '/hiren/')
 
 # class LoginFunctionalTestCase(LiveServerTestCase):
 #
