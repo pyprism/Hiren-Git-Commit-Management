@@ -75,6 +75,18 @@ class TestLoginView(TestCase):
         response = self.client.post('/login/', data={'username': 'admin', 'password': 'admin'}, follow=True)
         self.assertRedirects(response, '/hiren/')
 
+
+class TestLogoutView(TestCase):
+
+    def setUp(self):
+        User.objects.create_superuser(
+            username='admin', password='admin', email='admin@admin.lol')
+
+    def test_logout_works(self):
+        self.client.login(username='admin', password='admin')
+        response = self.client.get('/logout', follow=True)
+        self.assertRedirects(response, '/')
+
 # class LoginFunctionalTestCase(LiveServerTestCase):
 #
 #     def setUp(self):
