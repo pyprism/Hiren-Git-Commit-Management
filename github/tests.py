@@ -26,6 +26,10 @@ class HomePageTest(TestCase):
             b'<a href="/login"><i class="fa fa-sign-in"></i> Login</a>', response.content)
         self.assertTrue(response.content.endswith(b'</html>'))
 
+    def test_uses_index_template(self):
+        response = self.client.get('/')
+        self.assertTemplateUsed(response, 'index.html')
+
 
 class HirenPageTest(TestCase):
 
@@ -33,14 +37,35 @@ class HirenPageTest(TestCase):
         User.objects.create_superuser(
             username='admin', password='admin', email='admin@admin.lol')
 
-    def tearDown(self):
-        pass
-
     def test_url_resolved_to_hiren_page_view(self):
         found = resolve('/hiren/')
         self.assertEqual(found.func, hiren)
 
+    def test_displays_authorize_button(self):
+        self.client.login(username='admin', password='admin')
+        response = self.client.get('/hiren/')
+        self.assertContains(response, 'Authorize')
 
+    def test_access_denied_for_unauthorized_user(self):
+        response = self.client.get('/hiren/', follow=True)
+        self.assertRedirects(response, '/?next=/hiren/')
+
+    def test_uses_index_template(self):
+        self.client.login(username='admin', password='admin')
+        response = self.client.get('/hiren/')
+        self.assertTemplateUsed(response, 'hiren.html')
+
+
+class TestLoginView(TestCase):
+
+    def setUp(self):
+        User.objects.create_superuser(
+            username='admin', password='admin', email='admin@admin.lol')
+
+    def test_valid_login_works(self):
+        # self.client.login(username='admin', password='admin')
+        response = self.client.post('/login/', data={'username': 'admi', 'password': 'admin'})
+        self.assertRedirects(response, '/')
 
 # class LoginFunctionalTestCase(LiveServerTestCase):
 #
