@@ -96,17 +96,16 @@ class TestRevokeView(TestCase):
         item.access_token = "bla bla"
         item.authorized = True
         item.save()
+        self.HIREN_ID = item.id
 
     def test_denies_anonymous_login(self):
         response = self.client.post('/login/', data={'username': 'admi', 'password': 'admin'})
         self.assertRedirects(response, '/')
 
-    # def test_logged_in_user_can_delete_object(self):
-    #     self.client.login(username='admin', password='admin')
-    #     count = Hiren.objects.all().count()
-    #     self.assertEqual(count, 1)
-    #     response = self.client.get('/revoke/1/', follow=True)
-    #     self.assertRedirects(response, '/hiren/')
+    def test_logged_in_user_can_delete_object(self):
+        self.client.login(username='admin', password='admin')
+        response = self.client.get('/revoke/%s/' % self.HIREN_ID, follow=True)
+        self.assertRedirects(response, '/hiren/')
 
 # class LoginFunctionalTestCase(LiveServerTestCase):
 #
